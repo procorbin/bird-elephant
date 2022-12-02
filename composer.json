@@ -1,16 +1,16 @@
 {
-    "name": "coderjerk/bird-elephant",
+    "name": "procorbin/bird-elephant",
     "type": "library",
     "description": "A simple library to request data from the Twitter APIv2 endpoints",
     "license": "MIT",
     "authors": [
         {
-            "name": "Daniel Devine",
-            "email": "jerk@coderjerk.com"
+            "name": "Corbin Cyrille",
+            "email": "procorbin@wanadoo.fr"
         }
     ],
     "require": {
-        "guzzlehttp/guzzle": "^7.0",
+        "guzzlehttp/guzzle": "^6.0",
         "guzzlehttp/oauth-subscriber": "^0.6.0"
     },
     "autoload": {
