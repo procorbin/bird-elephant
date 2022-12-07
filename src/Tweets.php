@@ -1,14 +1,14 @@
 <?php
 
-namespace Coderjerk\BirdElephant;
+namespace Procorbin\BirdElephant;
 
-use Coderjerk\BirdElephant\Tweets\TweetLookup;
-use Coderjerk\BirdElephant\Tweets\TweetCounts;
-use Coderjerk\BirdElephant\Tweets\Search;
-use Coderjerk\BirdElephant\Tweets\Reply;
-use Coderjerk\BirdElephant\Tweets\Likes;
-use Coderjerk\BirdElephant\Tweets\Retweets;
-use Coderjerk\BirdElephant\Tweets\ManageTweets;
+use Procorbin\BirdElephant\Tweets\TweetLookup;
+use Procorbin\BirdElephant\Tweets\TweetCounts;
+use Procorbin\BirdElephant\Tweets\Search;
+use Procorbin\BirdElephant\Tweets\Reply;
+use Procorbin\BirdElephant\Tweets\Likes;
+use Procorbin\BirdElephant\Tweets\Retweets;
+use Procorbin\BirdElephant\Tweets\ManageTweets;
 use GuzzleHttp\Exception\GuzzleException;
 
 class Tweets

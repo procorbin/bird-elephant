@@ -1,6 +1,6 @@
 <?php
 
-namespace Coderjerk\BirdElephant;
+namespace Procorbin\BirdElephant;
 
 use GuzzleHttp\Client;
 
@@ -13,16 +13,18 @@ use GuzzleHttp\HandlerStack;
 /**
  * Handles http requests to the Twitter API.
  *
- * @author Dan Devine <dandevine0@gmail.com>
+ * @author Corbin Cyrille <procorbin@wanadoo.fr>
  */
-class Request
-{
+class Request {
+
     protected array $credentials;
 
     protected string $base_uri = 'https://api.twitter.com/';
 
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
     }
 
@@ -77,8 +79,7 @@ class Request
      * @return object
      * @throws GuzzleException
      */
-    public function bearerTokenRequest($args, $token): object
-    {
+    public function bearerTokenRequest(array $args, string $token): object {
         $client = new Client([
             'base_uri' => $this->base_uri . $args['api_version'] . '/'
         ]);
@@ -120,19 +121,19 @@ class Request
         } catch (ClientException | ServerException $e) {
             throw $e;
         }
+        return $this;
     }
 
     /**
-     * Signed requests for logged in users
+     * Signed requests for logged-in users
      * using OAuth 1.0a - will be deprecated in future in
      * favour of OAuth 2.0 with PKCE
      *
      * @param array $args
-     * @return object
+     * @return mixed
      * @throws GuzzleException
      */
-    public function userContextRequest($args): object
-    {
+    public function userContextRequest(array $args) {
         $path = $this->base_uri . $args['api_version'] . '/' . $args['path'];
 
         $stack = HandlerStack::create();
@@ -173,14 +174,15 @@ class Request
         } catch (ClientException | ServerException $e) {
             throw $e;
         }
+        return 0;
     }
 
     /**
      * @param $media
+     * @return mixed
      * @throws GuzzleException
      */
-    public function uploadMedia($media)
-    {
+    public function uploadMedia($media) {
         $stack = HandlerStack::create();
 
         $middleware = new Oauth1([

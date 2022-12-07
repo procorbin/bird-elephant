@@ -1,14 +1,14 @@
 <?php
 
-namespace Coderjerk\Tests;
+namespace Procorbin\Tests;
 
-use Coderjerk\BirdElephant\BirdElephant;
-use Coderjerk\BirdElephant\Compliance;
-use Coderjerk\BirdElephant\Lists;
-use Coderjerk\BirdElephant\Spaces;
-use Coderjerk\BirdElephant\Tweets;
-use Coderjerk\BirdElephant\User;
-use Coderjerk\BirdElephant\Users;
+use Procorbin\BirdElephant\BirdElephant;
+use Procorbin\BirdElephant\Compliance;
+use Procorbin\BirdElephant\Lists;
+use Procorbin\BirdElephant\Spaces;
+use Procorbin\BirdElephant\Tweets;
+use Procorbin\BirdElephant\User;
+use Procorbin\BirdElephant\Users;
 
 class BirdElephantTest extends BaseTest
 {

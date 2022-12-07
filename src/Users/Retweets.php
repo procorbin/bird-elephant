@@ -1,12 +1,12 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Users;
+namespace Procorbin\BirdElephant\Users;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
-class Retweets extends ApiBase
-{
+class Retweets extends ApiBase {
+
     /**
      * Auth credentials
      *
@@ -21,8 +21,11 @@ class Retweets extends ApiBase
      */
     protected string $username;
 
-    public function __construct($credentials, $username)
-    {
+    /**
+     * @param $credentials
+     * @param $username
+     */
+    public function __construct($credentials, $username) {
         $this->credentials = $credentials;
         $this->username = $username;
     }
@@ -33,10 +36,9 @@ class Retweets extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function retweet(string $target_tweet_id): object
-    {
+    public function retweet(string $target_tweet_id): object {
         $id = $this->getUserId($this->username, $this->credentials);
-        $path = "users/{$id}/retweets";
+        $path = 'users/'.$id.'/retweets';
         $data = [
             'tweet_id' => $target_tweet_id
         ];
@@ -49,10 +51,9 @@ class Retweets extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function unretweet(string $target_tweet_id): object
-    {
+    public function unretweet(string $target_tweet_id): object {
         $id = $this->getUserId($this->username, $this->credentials);
-        $path = "users/{$id}/retweets/{$target_tweet_id}";
+        $path = 'users/'.$id.'/retweets/'.$target_tweet_id;
 
         return $this->delete($this->credentials, $path, null, null, false, true);
     }

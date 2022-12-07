@@ -1,12 +1,12 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Users;
+namespace Procorbin\BirdElephant\Users;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
-class Lists extends ApiBase
-{
+class Lists extends ApiBase {
+
     /**
      * Auth credentials
      *
@@ -21,8 +21,11 @@ class Lists extends ApiBase
      */
     protected string $username;
 
-    public function __construct($credentials, $username)
-    {
+    /**
+     * @param $credentials
+     * @param $username
+     */
+    public function __construct($credentials, $username) {
         $this->credentials = $credentials;
         $this->username = $username;
     }
@@ -32,9 +35,8 @@ class Lists extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function follow(string $target_list_id): object
-    {
-        $id = $this->getUserId($this->username);
+    public function follow(string $target_list_id): object {
+        $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/followed_lists";
         $data = [
             'list_id' => $target_list_id
@@ -47,9 +49,8 @@ class Lists extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function unfollow(string $target_list_id): object
-    {
-        $id = $this->getUserId($this->username);
+    public function unfollow(string $target_list_id): object {
+        $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/followed_lists/{$target_list_id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);
@@ -60,9 +61,8 @@ class Lists extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function pin(string $target_list_id): object
-    {
-        $id = $this->getUserId($this->username);
+    public function pin(string $target_list_id): object {
+        $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/pinned_lists";
         $data = [
             'list_id' => $target_list_id
@@ -75,9 +75,8 @@ class Lists extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function unpin(string $target_list_id): object
-    {
-        $id = $this->getUserId($this->username);
+    public function unpin(string $target_list_id): object {
+        $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/pinned_lists/{$target_list_id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);
@@ -88,9 +87,8 @@ class Lists extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function pinned(array $params = []): object
-    {
-        $id = $this->getUserId($this->username);
+    public function pinned(array $params = []): object {
+        $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/pinned_lists";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -101,9 +99,8 @@ class Lists extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function followed(array $params = []): object
-    {
-        $id = $this->getUserId($this->username);
+    public function followed(array $params = []): object {
+        $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/followed_lists";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -114,9 +111,8 @@ class Lists extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function owned(array $params = []): object
-    {
-        $id = $this->getUserId($this->username);
+    public function owned(array $params = []): object {
+        $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/owned_lists";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -129,9 +125,8 @@ class Lists extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function memberships(array $params = []): object
-    {
-        $id = $this->getUserId($this->username);
+    public function memberships(array $params = []): object {
+        $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/list_memberships";
 
         return $this->get($this->credentials, $path, $params, null, false, true);

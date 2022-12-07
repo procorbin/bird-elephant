@@ -1,16 +1,16 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Tweets;
+namespace Procorbin\BirdElephant\Tweets;
 
-use Coderjerk\BirdElephant\ApiBase;
-use Coderjerk\BirdElephant\Request;
+use Procorbin\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\Request;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Posting and deleting tweets
  */
-class ManageTweets extends ApiBase
-{
+class ManageTweets extends ApiBase {
+
     /**
      * Twitter Credentials
      *
@@ -25,8 +25,10 @@ class ManageTweets extends ApiBase
      */
     protected string $endpoint = 'tweets';
 
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
     }
 
@@ -35,9 +37,9 @@ class ManageTweets extends ApiBase
      *
      * @param object $tweet
      * @return object
+     * @throws GuzzleException
      */
-    public function send(object $tweet): object
-    {
+    public function send(object $tweet): object {
         $tweet = $tweet->build();
         return $this->post($this->credentials, $this->endpoint, null, $tweet, false, true);
     }
@@ -49,8 +51,7 @@ class ManageTweets extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function unsend(string $tweet_id): object
-    {
+    public function unsend(string $tweet_id): object {
         $path = $this->endpoint . '/' . $tweet_id;
         return $this->delete($this->credentials, $path, null, null, false, true);
     }
@@ -63,8 +64,7 @@ class ManageTweets extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function mediaUpload(string $file): object
-    {
+    public function mediaUpload(string $file): object {
         $request = new Request($this->credentials);
         return $request->uploadMedia($file);
     }

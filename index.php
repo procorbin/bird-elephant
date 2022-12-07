@@ -2,7 +2,8 @@
 
 require_once('bootstrap.php');
 
-use Coderjerk\BirdElephant\BirdElephant;
+use Procorbin\BirdElephant\BirdElephant;
+use Procorbin\BirdElephant\Oauth2\Oauth2Twitter;
 
 session_start();
 
@@ -12,10 +13,10 @@ if (isset($_SESSION['oauth-2-access-token'])) {
 
 if (isset($_SESSION['oauth-2-access-token']) && $token->hasExpired()) {
 
-    $provider = new Smolblog\OAuth2\Client\Provider\Twitter([
-        'clientId'     => $_ENV['OAUTH2_CLIENT_ID'],
-        'clientSecret' => $_ENV['OAUTH2_CLIENT_SECRET'],
-        'redirectUri'  => $_ENV['TWITTER_CALLBACK_URI'],
+    $provider = new Oauth2Twitter([
+        'clientId' => $_ENV['TWITTER_API_KEY'],
+        'clientSecret' => $_ENV['TWITTER_SECRET'],
+        'redirectUri'  => $_ENV['TWITTER_CALLBACK_URI']
     ]);
 
     $newToken = $provider->getAccessToken('refresh_token', [
@@ -42,8 +43,9 @@ $credentials = [
 ];
 
 $twitter = new BirdElephant($credentials);
+dd($twitter);
 
-// get a list of all the authenticated user's bookmarks: only available if OAuth 2.0 with PKCE auth is sucessful.
+// get a list of all the authenticated user's bookmarks: only available if OAuth 2.0 with PKCE auth is successful.
 try {
     $me = $twitter->me()->myself()->data->username;
 

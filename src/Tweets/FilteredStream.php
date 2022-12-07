@@ -1,19 +1,19 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Tweets;
+namespace Procorbin\BirdElephant\Tweets;
 
-use Coderjerk\BirdElephant\ApiBase;
-use Coderjerk\BirdElephant\Request;
+use Procorbin\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\Request;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Filters the real-time stream
  * of public Tweets.
  *
- * @author Dan Devine <dandevine0@gmail.com>
+ * @author Corbin Cyrille <procorbin@wanadoo.fr>
  */
-class FilteredStream extends ApiBase
-{
+class FilteredStream extends ApiBase {
+
     /**
      * endpoint
      *
@@ -23,9 +23,10 @@ class FilteredStream extends ApiBase
 
     private array $credentials;
 
-
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
     }
 
@@ -64,8 +65,7 @@ class FilteredStream extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function setRules(string $value, string $tag): object
-    {
+    public function setRules(string $value, string $tag): object {
         $uri = $this->uri . '/rules';
 
         $rules =  [
@@ -90,8 +90,7 @@ class FilteredStream extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function deleteRule(string $id): object
-    {
+    public function deleteRule(string $id): object {
         $uri = $this->uri . '/rules';
 
         $rules =  [
@@ -113,8 +112,7 @@ class FilteredStream extends ApiBase
      * @return string
      * @throws GuzzleException
      */
-    public function deleteAllRules(): string
-    {
+    public function deleteAllRules(): string {
         $rules = $this->getRules();
 
         if ($rules && property_exists($rules, 'data')) {

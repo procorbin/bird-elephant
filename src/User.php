@@ -1,17 +1,17 @@
 <?php
 
-namespace Coderjerk\BirdElephant;
+namespace Procorbin\BirdElephant;
 
-use Coderjerk\BirdElephant\Users\Follows;
-use Coderjerk\BirdElephant\Users\Blocks;
-use Coderjerk\BirdElephant\Users\Mutes;
-use Coderjerk\BirdElephant\Users\Likes;
-use Coderjerk\BirdElephant\Users\Retweets;
-use Coderjerk\BirdElephant\Users\Lists;
-use Coderjerk\BirdElephant\Spaces\SpacesLookup;
-use Coderjerk\BirdElephant\Tweets\Timeline;
-use Coderjerk\BirdElephant\Users\UserLookup;
-use Coderjerk\BirdElephant\Users\Bookmarks;
+use Procorbin\BirdElephant\Users\Follows;
+use Procorbin\BirdElephant\Users\Blocks;
+use Procorbin\BirdElephant\Users\Mutes;
+use Procorbin\BirdElephant\Users\Likes;
+use Procorbin\BirdElephant\Users\Retweets;
+use Procorbin\BirdElephant\Users\Lists;
+use Procorbin\BirdElephant\Spaces\SpacesLookup;
+use Procorbin\BirdElephant\Tweets\Timeline;
+use Procorbin\BirdElephant\Users\UserLookup;
+use Procorbin\BirdElephant\Users\Bookmarks;
 use GuzzleHttp\Exception\GuzzleException;
 
 

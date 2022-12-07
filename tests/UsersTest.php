@@ -1,7 +1,7 @@
 <?php
-namespace Coderjerk\Tests;
+namespace Procorbin\Tests;
 
-use Coderjerk\BirdElephant\Users;
+use Procorbin\BirdElephant\Users;
 use GuzzleHttp\Exception\GuzzleException;
 
 class UsersTest extends BaseTest
@@ -15,7 +15,7 @@ class UsersTest extends BaseTest
         parent::setUp();
 
         $this->credentials = $this->setUpCredentials();
-        $this->username = 'coderjerk';
+        $this->username = 'shibablastar';
         $this->users = new Users($this->credentials, $this->username);
     }
 
@@ -24,7 +24,7 @@ class UsersTest extends BaseTest
      */
     public function testLookup()
     {
-        $users = $this->users->lookup(['coderjerk', 'dril', 'spanish__eddie']);
+        $users = $this->users->lookup(['shibablastar', 'dril', 'spanish__eddie']);
         self::assertIsArray($users->data);
     }
 }

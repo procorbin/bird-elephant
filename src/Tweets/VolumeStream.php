@@ -1,11 +1,12 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Tweets;
+namespace Procorbin\BirdElephant\Tweets;
 
-use Coderjerk\BirdElephant\Request;
+use Procorbin\BirdElephant\Request;
+use GuzzleHttp\Exception\GuzzleException;
 
-class VolumeStream
-{
+class VolumeStream {
+
     /**
      * endpoint
      *
@@ -15,9 +16,10 @@ class VolumeStream
 
     private array $credentials;
 
-
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
     }
 
@@ -26,10 +28,9 @@ class VolumeStream
      *
      * @param array|null $params
      * @return object
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
-    public function connectToStream(array $params = null): object
-    {
+    public function connectToStream(array $params = null): object {
         $request = new Request($this->credentials);
         return $request->authorisedRequest('GET', $this->uri, $params, null, true);
     }

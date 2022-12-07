@@ -1,16 +1,16 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Users;
+namespace Procorbin\BirdElephant\Users;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
  *
- * @author Dan Devine <dandevine0@gmail.com>
+ * @author Corbin Cyrille <procorbin@wanadoo.fr>
  */
-class Follows extends ApiBase
-{
+class Follows extends ApiBase {
+
     /**
      * The endpoint
      *
@@ -41,8 +41,11 @@ class Follows extends ApiBase
      */
     protected string $username;
 
-    public function __construct($credentials, $username)
-    {
+    /**
+     * @param $credentials
+     * @param $username
+     */
+    public function __construct($credentials, $username) {
         $this->credentials = $credentials;
         $this->username = $username;
     }
@@ -52,9 +55,9 @@ class Follows extends ApiBase
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
-    public function getFollowers(array $params): object
-    {
+    public function getFollowers(array $params): object {
         return $this->getFollows($params, '/followers');
     }
 
@@ -63,9 +66,9 @@ class Follows extends ApiBase
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
-    public function getFollowing(array $params): object
-    {
+    public function getFollowing(array $params): object {
         return $this->getFollows($params, '/following');
     }
 
@@ -75,13 +78,13 @@ class Follows extends ApiBase
      * @param array $params
      * @param string $endpoint
      * @return object
+     * @throws GuzzleException
      */
-    protected function getFollows(array $params, string $endpoint): object
-    {
+    protected function getFollows(array $params, string $endpoint): object {
         $id = $this->getUserId($this->username, $this->credentials);
         $path = $this->uri . '/' .  $id . $endpoint;
         $params = array_merge($this->default_params, $params);
-        return $this->get($this->credentials, $path, $params, $data = null, $stream = false, $signed = false);
+        return $this->get($this->credentials, $path, $params, null, false, false);
     }
 
     /**
@@ -91,10 +94,9 @@ class Follows extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function follow(string $target_username): object
-    {
+    public function follow(string $target_username): object {
         $id = $this->getUserId($this->username, $this->credentials);
-        $path = "users/{$id}/following";
+        $path = 'users/'.$id.'/following';
         $target_user_id = $this->getUserId($target_username, $this->credentials);
         $data = [
             'target_user_id' => $target_user_id
@@ -112,11 +114,10 @@ class Follows extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function unfollow(string $target_username): object
-    {
-        $id = $this->getUserId($this->username);
-        $target_user_id = $this->getUserId($target_username);
-        $path = "{$this->uri}/{$id}/following/{$target_user_id}";
+    public function unfollow(string $target_username): object {
+        $id = $this->getUserId($this->username, $this->credentials);
+        $target_user_id = $this->getUserId($target_username, $this->credentials);
+        $path = $this->uri.'/'.$id .'/following/'.$target_user_id;
         return $this->delete($this->credentials, $path, null, null, false, true);
     }
 }

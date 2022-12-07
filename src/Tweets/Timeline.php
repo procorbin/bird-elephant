@@ -1,18 +1,18 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Tweets;
+namespace Procorbin\BirdElephant\Tweets;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Access Tweets published by a
  * specific Twitter account.
  *
- * @author Dan Devine <dandevine0@gmail.com>
+ * @author Corbin Cyrille <procorbin@wanadoo.fr>
  */
-class Timeline extends ApiBase
-{
+class Timeline extends ApiBase {
+
     /**
      * The endpoint
      *
@@ -25,8 +25,10 @@ class Timeline extends ApiBase
      */
     protected array $credentials;
 
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
     }
 
@@ -38,8 +40,7 @@ class Timeline extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getTweets(string $user, array $params): object
-    {
+    public function getTweets(string $user, array $params): object {
         return $this->getTimeline($user, '/tweets', $params);
     }
 
@@ -51,8 +52,7 @@ class Timeline extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getMentions(string $user, array $params): object
-    {
+    public function getMentions(string $user, array $params): object {
         return $this->getTimeline($user, '/mentions', $params);
     }
 
@@ -65,9 +65,8 @@ class Timeline extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getReverseChronological(string $user, array $params): object
-    {
-        $id = $this->getUserId($user);
+    public function getReverseChronological(string $user, array $params): object {
+        $id = $this->getUserId($user, $this->credentials);
         $path = $this->uri . '/' .  $id . '/timelines/reverse_chronological';
         return $this->get($this->credentials, $path, $params, null, false, true);
     }
@@ -81,9 +80,8 @@ class Timeline extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    protected function getTimeline(string $user, string $endpoint, array $params): object
-    {
-        $id = $this->getUserId($user);
+    protected function getTimeline(string $user, string $endpoint, array $params): object {
+        $id = $this->getUserId($user, $this->credentials);
         $path = $this->uri . '/' .  $id . $endpoint;
         return $this->get($this->credentials, $path, $params);
     }

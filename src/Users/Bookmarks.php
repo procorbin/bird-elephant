@@ -1,18 +1,18 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Users;
+namespace Procorbin\BirdElephant\Users;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Save Tweets and easily access them later.
  *
- * @author Dan Devine <dandevine0@gmail.com>
+ * @author Corbin Cyrille <procorbin@wanadoo.fr>
  * @since 0.4.8
  */
-class Bookmarks extends ApiBase
-{
+class Bookmarks extends ApiBase {
+
     /**
      * Auth credentials
      *
@@ -34,12 +34,14 @@ class Bookmarks extends ApiBase
      */
     protected string $uri;
 
-
-    public function __construct($credentials, $username)
-    {
+    /**
+     * @param $credentials
+     * @param $username
+     */
+    public function __construct($credentials, $username) {
         $this->credentials = $credentials;
 
-        $user_id = $this->getUserId($username);
+        $user_id = $this->getUserId($username, $credentials);
 
         $this->uri = 'users/' . $user_id . '/bookmarks';
     }
@@ -51,8 +53,7 @@ class Bookmarks extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function lookup(array $params): object
-    {
+    public function lookup(array $params): object {
         return $this->get($this->credentials, $this->uri, $params, null, false, true);
     }
 
@@ -61,8 +62,7 @@ class Bookmarks extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function bookmark(string $target_tweet_id): object
-    {
+    public function bookmark(string $target_tweet_id): object {
         $data = [
             'tweet_id' => $target_tweet_id
         ];
@@ -75,8 +75,7 @@ class Bookmarks extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function unbookmark(string $target_tweet_id): object
-    {
+    public function unbookmark(string $target_tweet_id): object {
         $path = $this->uri . '/' . $target_tweet_id;
 
         return $this->delete($this->credentials, $path, null, null, false, true);

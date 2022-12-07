@@ -1,12 +1,11 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Lists;
+namespace Procorbin\BirdElephant\Lists;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
-class Lookup extends ApiBase
-{
+class Lookup extends ApiBase {
 
     /**
      * The endpoint base
@@ -22,8 +21,10 @@ class Lookup extends ApiBase
      */
     protected array $credentials;
 
-    public function __construct(array $credentials)
-    {
+    /**
+     * @param array $credentials
+     */
+    public function __construct(array $credentials) {
         $this->credentials = $credentials;
     }
 
@@ -36,8 +37,7 @@ class Lookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getList(string $list_id, array $params = []): object
-    {
+    public function getList(string $list_id, array $params = []): object {
         $path = $this->endpoint_base . '/' . $list_id;
         return $this->get($this->credentials, $path, $params);
     }

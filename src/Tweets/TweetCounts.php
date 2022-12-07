@@ -1,24 +1,26 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Tweets;
+namespace Procorbin\BirdElephant\Tweets;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Programmatically retrieve the numerical
  * count of Tweets for a query
  *
- * @author Dan Devine <dandevine0@gmail.com>
+ * @author Corbin Cyrille <procorbin@wanadoo.fr>
  */
-class TweetCounts extends ApiBase
-{
+class TweetCounts extends ApiBase {
+
     protected array $credentials;
 
     protected string $endpoint = 'tweets/counts/';
 
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
     }
 
@@ -29,8 +31,7 @@ class TweetCounts extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function recent(array $params): object
-    {
+    public function recent(array $params): object {
         return $this->getCount('recent', $params);
     }
 
@@ -43,8 +44,7 @@ class TweetCounts extends ApiBase
      * @throws GuzzleException
      * @todo I'm not on the academic track so haven't tested this - it works in theory :)
      */
-    public function all(array $params): object
-    {
+    public function all(array $params): object {
         return $this->getCount('all', $params);
     }
 
@@ -54,8 +54,7 @@ class TweetCounts extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    protected function getCount(string $path, array $params): object
-    {
+    protected function getCount(string $path, array $params): object {
         $path = $this->endpoint . $path;
         return $this->get($this->credentials, $path, $params, null, false, false);
     }

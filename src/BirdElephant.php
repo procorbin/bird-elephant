@@ -1,17 +1,18 @@
 <?php
 
-namespace Coderjerk\BirdElephant;
+namespace Procorbin\BirdElephant;
 
-use Coderjerk\BirdElephant\User;
-use Coderjerk\BirdElephant\Tweets;
-use Coderjerk\BirdElephant\Compliance;
-use Coderjerk\BirdElephant\Lists;
-use Coderjerk\BirdElephant\Spaces;
-use Coderjerk\BirdElephant\Me;
+use GuzzleHttp\Exception\GuzzleException;
+use Procorbin\BirdElephant\Compliance;
+use Procorbin\BirdElephant\Lists;
+use Procorbin\BirdElephant\Me;
+use Procorbin\BirdElephant\Spaces;
+use Procorbin\BirdElephant\Tweets;
+use Procorbin\BirdElephant\User;
+use Procorbin\BirdElephant\Users;
 
+class BirdElephant {
 
-class BirdElephant
-{
     /**
      * Twitter credentials.
      *
@@ -19,8 +20,10 @@ class BirdElephant
      */
     protected array $credentials;
 
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
     }
 
@@ -30,8 +33,7 @@ class BirdElephant
      * @param string $username
      * @return User
      */
-    public function user(string $username): User
-    {
+    public function user(string $username): User {
         return new User($this->credentials, $username);
     }
 
@@ -40,8 +42,7 @@ class BirdElephant
      *
      * @return Users
      */
-    public function users(): Users
-    {
+    public function users(): Users {
         return new Users($this->credentials);
     }
 
@@ -50,8 +51,7 @@ class BirdElephant
      *
      * @return Tweets
      */
-    public function tweets(): Tweets
-    {
+    public function tweets(): Tweets {
         return new Tweets($this->credentials);
     }
 
@@ -60,8 +60,7 @@ class BirdElephant
      *
      * @return Compliance
      */
-    public function compliance(): Compliance
-    {
+    public function compliance(): Compliance {
         return new Compliance($this->credentials);
     }
 
@@ -70,8 +69,7 @@ class BirdElephant
      *
      * @return Lists
      */
-    public function lists(): Lists
-    {
+    public function lists(): Lists {
         return new Lists($this->credentials);
     }
 
@@ -80,18 +78,16 @@ class BirdElephant
      *
      * @return Spaces
      */
-    public function spaces(): Spaces
-    {
+    public function spaces(): Spaces {
         return new Spaces($this->credentials);
     }
 
     /**
-     * Get information about the logged in user
+     * Get information about the logged-in user
      *
      * @return Me
      */
-    public function me(): Me
-    {
+    public function me(): Me {
         return new Me($this->credentials);
     }
 
@@ -109,6 +105,7 @@ class BirdElephant
      * @param boolean $stream - streaming endpoint if true, default false
      * @param boolean $signed - bearer auth or user context auth, default bearer
      * @return object
+     * @throws GuzzleException
      */
     public function call(
         array  $credentials,

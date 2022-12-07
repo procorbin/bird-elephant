@@ -1,10 +1,10 @@
 <?php
 
-namespace  Coderjerk\Tests;
+namespace  Procorbin\Tests;
 
-use Coderjerk\BirdElephant\BirdElephant;
-use Coderjerk\BirdElephant\Tweets;
-use Coderjerk\BirdElephant\Tweets\TweetCounts;
+use Procorbin\BirdElephant\BirdElephant;
+use Procorbin\BirdElephant\Tweets;
+use Procorbin\BirdElephant\Tweets\TweetCounts;
 use PHPUnit\Framework\TestCase;
 
 class TweetsTest extends BaseTest

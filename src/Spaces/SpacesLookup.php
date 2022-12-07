@@ -1,12 +1,12 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Spaces;
+namespace Procorbin\BirdElephant\Spaces;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
-class SpacesLookup extends ApiBase
-{
+class SpacesLookup extends ApiBase {
+
     /**
      * The endpoint base
      *
@@ -21,8 +21,10 @@ class SpacesLookup extends ApiBase
      */
     protected array $credentials;
 
-    public function __construct(array $credentials)
-    {
+    /**
+     * @param array $credentials
+     */
+    public function __construct(array $credentials) {
         $this->credentials = $credentials;
     }
 
@@ -35,8 +37,7 @@ class SpacesLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getSpace(string $space_id, array $params = []): object
-    {
+    public function getSpace(string $space_id, array $params = []): object {
         $path = $this->endpoint_base . '/' . $space_id;
         return $this->get($this->credentials, $path, $params);
     }
@@ -49,8 +50,7 @@ class SpacesLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getSpaces(array $space_ids, array $params = []): object
-    {
+    public function getSpaces(array $space_ids, array $params = []): object {
         $path = $this->endpoint_base;
         $params['ids'] = join(',', $space_ids);
 
@@ -65,8 +65,7 @@ class SpacesLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function discover(array $user_ids, array $params = []): object
-    {
+    public function discover(array $user_ids, array $params = []): object {
         $path = $this->endpoint_base . '/by/creator_ids';
         $params['user_ids'] = join(',', $user_ids);
 
@@ -81,10 +80,9 @@ class SpacesLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getByUser(string $user_name, array $params = []): object
-    {
+    public function getByUser(string $user_name, array $params = []): object {
         $path = $this->endpoint_base . '/by/creator_ids';
-        $id = $this->getUserId($user_name);
+        $id = $this->getUserId($user_name, $this->credentials);
         $params['user_ids'] = $id;
 
         return $this->get($this->credentials, $path, $params);
@@ -100,8 +98,7 @@ class SpacesLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function buyers(string $space_id, array $params = []): object
-    {
+    public function buyers(string $space_id, array $params = []): object {
         $path = $this->endpoint_base . '/' . $space_id . '/buyers';
         return $this->get($this->credentials, $path, $params, null, false, true);
     }

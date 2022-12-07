@@ -1,18 +1,21 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Tweets;
+namespace Procorbin\BirdElephant\Tweets;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Hides or unhides a reply to a Tweet.
  */
-class Reply extends ApiBase
-{
+class Reply extends ApiBase {
+
     protected array $credentials;
 
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
     }
 
@@ -21,10 +24,9 @@ class Reply extends ApiBase
      *
      * @param string $id
      * @return object
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
-    public function hide(string $id): object
-    {
+    public function hide(string $id): object {
         return $this->manageReplies($id, ["hidden" => true]);
     }
 
@@ -33,10 +35,9 @@ class Reply extends ApiBase
      *
      * @param string $id
      * @return object
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
-    public function unhide(string $id): object
-    {
+    public function unhide(string $id): object {
         return $this->manageReplies($id, ["hidden" => false]);
     }
 
@@ -44,10 +45,9 @@ class Reply extends ApiBase
      * @param $id string
      * @param $data array
      * @return object
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
-    protected function manageReplies(string $id, array $data): object
-    {
+    protected function manageReplies(string $id, array $data): object {
         $endpoint = "tweets/{$id}/hidden";
         return $this->put($this->credentials, $endpoint, null, $data, false, true);
     }

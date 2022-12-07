@@ -9,7 +9,7 @@ session_start();
 
 require_once('bootstrap.php');
 
-$provider = new Smolblog\OAuth2\Client\Provider\Twitter([
+$provider = new Procorbin\BirdElephant\Oauth2\Oauth2Twitter([
     'clientId'     => $_ENV['OAUTH2_CLIENT_ID'],
     'clientSecret' => $_ENV['OAUTH2_CLIENT_SECRET'],
     'redirectUri'  => $_ENV['TWITTER_CALLBACK_URI'],

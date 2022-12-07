@@ -1,17 +1,18 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Lists;
+namespace Procorbin\BirdElephant\Lists;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
-class ManageLists extends ApiBase
-{
+class ManageLists extends ApiBase {
 
     protected array $credentials;
 
-    public function __construct(array $credentials)
-    {
+    /**
+     * @param array $credentials
+     */
+    public function __construct(array $credentials) {
         $this->credentials = $credentials;
     }
 
@@ -24,8 +25,7 @@ class ManageLists extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function createList(string $name,  $description = false, bool $private = false): object
-    {
+    public function createList(string $name,  $description = false, bool $private = false): object {
         $data = [
             'name' => $name,
             'private' => $private
@@ -46,13 +46,12 @@ class ManageLists extends ApiBase
      *
      * @param string $id
      * @param string $name
-     * @param $description
+     * @param bool $description
      * @param boolean $private
      * @return object
      * @throws GuzzleException
      */
-    public function updateList(string $id, string $name, $description = false, bool $private = false): object
-    {
+    public function updateList(string $id, string $name, bool $description = false, bool $private = false): object {
         $data = [
             'name' => $name,
             'private' => $private
@@ -74,8 +73,7 @@ class ManageLists extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function deleteList(string $id): object
-    {
+    public function deleteList(string $id): object {
         $path = "lists/{$id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);

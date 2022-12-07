@@ -1,12 +1,12 @@
 <?php
 
-namespace Coderjerk\BirdElephant;
+namespace Procorbin\BirdElephant;
 
-use Coderjerk\BirdElephant\Users\UserLookup;
+use Procorbin\BirdElephant\Users\UserLookup;
 use GuzzleHttp\Exception\GuzzleException;
 
-class Me
-{
+class Me {
+
     /**
      * Tokens and secrets
      *
@@ -14,8 +14,12 @@ class Me
      */
     protected array $credentials;
 
-    public function __construct($credentials)
-    {
+    /**
+     * @var UserLookup
+     */
+    protected UserLookup $userLookup;
+
+    public function __construct($credentials) {
         $this->credentials = $credentials;
         $this->userLookup = new UserLookup($credentials);
     }
@@ -27,8 +31,7 @@ class Me
      * @return object
      * @throws GuzzleException
      */
-    public function myself(array $params = []): object
-    {
+    public function myself(array $params = []): object {
         return $this->userLookup->getMe($params);
     }
 }

@@ -1,13 +1,13 @@
 <?php
 
-namespace Coderjerk\BirdElephant;
+namespace Procorbin\BirdElephant;
 
-use Coderjerk\BirdElephant\Request;
-use Coderjerk\BirdElephant\Users\UserLookup;
+use Procorbin\BirdElephant\Request;
+use Procorbin\BirdElephant\Users\UserLookup;
 use GuzzleHttp\Exception\GuzzleException;
 
-class ApiBase
-{
+class ApiBase {
+
     /**
      * @param array $credentials
      * @param string $http_method
@@ -15,8 +15,7 @@ class ApiBase
      * @return object
      * @throws GuzzleException
      */
-    private function go(array $credentials, string $http_method, $options): object
-    {
+    private function go(array $credentials, string $http_method, $options): object {
         $request = new Request($credentials);
         return $request->authorisedRequest($http_method, ...$options);
     }
@@ -27,51 +26,47 @@ class ApiBase
      * @return object
      * @throws GuzzleException
      */
-    protected function get(array $credentials, ...$options): object
-    {
+    protected function get(array $credentials, ...$options): object {
         return $this->go($credentials, 'GET', $options);
     }
 
     /**
-     * @param $credentials
+     * @param array $credentials
      * @param ...$options
      * @return object
      * @throws GuzzleException
      */
-    protected function post($credentials, ...$options): object
-    {
+    protected function post(array $credentials, ...$options): object {
         return $this->go($credentials, 'POST', $options);
     }
 
     /**
-     * @param $credentials
+     * @param array $credentials
      * @param ...$options
      * @return object
      * @throws GuzzleException
      */
-    protected function put($credentials, ...$options): object
-    {
+    protected function put(array $credentials, ...$options): object {
         return $this->go($credentials, 'PUT', $options);
     }
 
     /**
-     * @param $credentials
+     * @param array $credentials
      * @param ...$options
      * @return object
      * @throws GuzzleException
      */
-    protected function delete($credentials, ...$options): object
-    {
+    protected function delete(array $credentials, ...$options): object {
         return $this->go($credentials, 'DELETE', $options);
     }
 
     /**
      * @param $username
+     * @param $credentials
      * @return string
      */
-    protected function getUserId($username): string
-    {
-        $user = new UserLookup($this->credentials);
+    protected function getUserId($username, $credentials): string {
+        $user = new UserLookup($credentials);
         return $user->getUserIdFromUsername($username);
     }
 }

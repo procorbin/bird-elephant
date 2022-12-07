@@ -1,9 +1,9 @@
 <?php
 
-namespace Coderjerk\Tests\Compliance;
+namespace Procorbin\Tests\Compliance;
 
-use Coderjerk\BirdElephant\Compliance\BatchCompliance;
-use Coderjerk\Tests\BaseTest;
+use Procorbin\BirdElephant\Compliance\BatchCompliance;
+use Procorbin\Tests\BaseTest;
 
 class BatchComplianceTest extends BaseTest
 {

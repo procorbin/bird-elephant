@@ -1,23 +1,25 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Users;
+namespace Procorbin\BirdElephant\Users;
 
-use Coderjerk\BirdElephant\ApiBase;
-use Coderjerk\BirdElephant\Request;
+use Procorbin\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\Request;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Returns information about a user or group of users,
  * specified by a user ID or a username
  */
-class UserLookup extends ApiBase
-{
+class UserLookup extends ApiBase {
+
     protected string $uri = 'users';
 
     protected array $credentials;
 
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
     }
 
@@ -29,8 +31,7 @@ class UserLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getSingleUserById(string $id, array $params): object
-    {
+    public function getSingleUserById(string $id, array $params): object {
         $path = $this->uri . '/' . $id;
         return $this->get($this->credentials, $path, $params);
     }
@@ -43,8 +44,7 @@ class UserLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getMultipleUsersById(array $ids, array $params): object
-    {
+    public function getMultipleUsersById(array $ids, array $params): object {
         if (count($ids) === 1) {
             $this->getSingleUserById($ids[0], $params);
         }
@@ -65,8 +65,7 @@ class UserLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getSingleUserByUsername(string $username, array $params): object
-    {
+    public function getSingleUserByUsername(string $username, array $params): object {
         $path = $this->uri . '/by/username/' . $username;
 
         $request = new Request($this->credentials);
@@ -80,9 +79,8 @@ class UserLookup extends ApiBase
      * @return string
      * @throws GuzzleException
      */
-    public function getUserIdFromUsername(string $username): string
-    {
-        $user = $this->getSingleUserByUsername($username, $params = []);
+    public function getUserIdFromUsername(string $username): string {
+        $user = $this->getSingleUserByUsername($username, []);
 
         return $user->data->id;
     }
@@ -95,8 +93,7 @@ class UserLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getMultipleUsersByUsername(array $usernames, array $params): object
-    {
+    public function getMultipleUsersByUsername(array $usernames, array $params): object {
         $path = $this->uri . '/by';
         $params['usernames'] = join(',', $usernames);
 
@@ -113,8 +110,7 @@ class UserLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function lookupUsersByUsername(array $usernames, array $params): object
-    {
+    public function lookupUsersByUsername(array $usernames, array $params): object {
         if (count($usernames) === 1) {
             return $this->getSingleUserByUsername($usernames[0], $params);
         } else {
@@ -130,8 +126,7 @@ class UserLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function lookupUsersById(array $ids, array $params): object
-    {
+    public function lookupUsersById(array $ids, array $params): object {
         if (count($ids) === 1) {
             return $this->getSingleUserById($ids[0], $params);
         } else {
@@ -146,8 +141,7 @@ class UserLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getMe(array $params): object
-    {
+    public function getMe(array $params): object {
         $path = $this->uri . '/me/';
 
         return $this->get($this->credentials, $path, $params, null, false, true);

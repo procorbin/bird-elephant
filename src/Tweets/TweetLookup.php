@@ -1,16 +1,16 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Tweets;
+namespace Procorbin\BirdElephant\Tweets;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Returns information about a Tweet or group
  * of Tweets, specified by a Tweet ID.
  */
-class TweetLookup extends ApiBase
-{
+class TweetLookup extends ApiBase {
+
     /**
      * The endpoint base
      *
@@ -25,9 +25,10 @@ class TweetLookup extends ApiBase
      */
     protected array $credentials;
 
-
-    public function __construct(array $credentials)
-    {
+    /**
+     * @param array $credentials
+     */
+    public function __construct(array $credentials) {
         $this->credentials = $credentials;
     }
 
@@ -39,8 +40,7 @@ class TweetLookup extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function getTweet(string $id, array $params): object
-    {
+    public function getTweet(string $id, array $params): object {
         $path = $this->endpoint_base . '/' . $id;
 
         return $this->get($this->credentials, $path, $params);
@@ -50,11 +50,11 @@ class TweetLookup extends ApiBase
      * Get multiple tweets
      *
      * @param array $ids
+     * @param array $params
      * @return object
      * @throws GuzzleException
      */
-    public function getTweets(array $ids, array $params): object
-    {
+    public function getTweets(array $ids, array $params): object {
         if (count($ids) === 1) {
             $this->getTweet($ids[0], $params);
         }

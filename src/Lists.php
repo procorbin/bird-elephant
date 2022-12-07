@@ -1,21 +1,23 @@
 <?php
 
-namespace Coderjerk\BirdElephant;
+namespace Procorbin\BirdElephant;
 
-use Coderjerk\BirdElephant\Lists\ManageLists;
-use Coderjerk\BirdElephant\Lists\Members;
-use Coderjerk\BirdElephant\Lists\Follows;
-use Coderjerk\BirdElephant\Lists\Lookup;
-use Coderjerk\BirdElephant\Lists\Tweets;
+use Procorbin\BirdElephant\Lists\ManageLists;
+use Procorbin\BirdElephant\Lists\Members;
+use Procorbin\BirdElephant\Lists\Follows;
+use Procorbin\BirdElephant\Lists\Lookup;
+use Procorbin\BirdElephant\Lists\Tweets;
 use GuzzleHttp\Exception\GuzzleException;
 
-class Lists
-{
+class Lists {
+
     public array $credentials;
     private ManageLists $lists;
 
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
         $this->lists =  new ManageLists($this->credentials);
     }
@@ -66,38 +68,32 @@ class Lists
      * DELETE /2/lists/:id/members/:user_id
      *
      * @return Members
-     * @throws GuzzleException
      */
-    public function members(): Members
-    {
+    public function members(): Members {
         return new Members($this->credentials);
     }
 
     /**
      * @return Follows
-     * @throws GuzzleException
      */
-    public function follows(): Follows
-    {
+    public function follows(): Follows {
         return new Follows($this->credentials);
     }
 
     /**
      * @return Tweets
-     * @throws GuzzleException
      */
-    public function tweets(): Tweets
-    {
+    public function tweets(): Tweets {
         return new Tweets($this->credentials);
     }
 
     /**
      * @param string $list_id
+     * @param array $params
      * @return object
      * @throws GuzzleException
      */
-    public function get($list_id, $params = []): object
-    {
+    public function get(string $list_id, array $params = []): object {
         $lookup = new Lookup($this->credentials);
         return $lookup->getList($list_id, $params);
     }

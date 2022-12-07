@@ -1,16 +1,16 @@
 <?php
 
-namespace Coderjerk\BirdElephant;
+namespace Procorbin\BirdElephant;
 
-use Coderjerk\BirdElephant\Spaces\SpacesLookup;
+use Procorbin\BirdElephant\Spaces\SpacesLookup;
 
 /**
  * "Spaces is a new way to have live audio conversations on Twitter."
  *
  * https://help.twitter.com/en/using-twitter/spaces
  */
-class Spaces
-{
+class Spaces {
+
     /**
      * Tokens and secrets
      *
@@ -18,16 +18,17 @@ class Spaces
      */
     protected array $credentials;
 
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
     }
 
     /**
      * @return SpacesLookup
      */
-    public function lookup(): SpacesLookup
-    {
+    public function lookup(): SpacesLookup {
         return new SpacesLookup($this->credentials);
     }
 }

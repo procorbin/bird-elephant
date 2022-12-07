@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\BirdElephant;
+namespace Procorbin\BirdElephant;
 
-use Coderjerk\BirdElephant\Compliance\BatchCompliance;
+use Procorbin\BirdElephant\Compliance\BatchCompliance;
 use GuzzleHttp\Exception\GuzzleException;
 
 class Compliance

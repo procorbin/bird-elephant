@@ -1,18 +1,20 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Lists;
+namespace Procorbin\BirdElephant\Lists;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
-class Members extends ApiBase
-{
+class Members extends ApiBase {
+
     protected array $credentials;
 
     protected string $path;
 
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
     }
 
@@ -24,8 +26,7 @@ class Members extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function lookup(string $list_id, array $params = []): object
-    {
+    public function lookup(string $list_id, array $params = []): object {
         $path = "lists/{$list_id}/members";
         return $this->get($this->credentials, $path, $params, null, false, false);
     }
@@ -38,9 +39,8 @@ class Members extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function add(string $list_id, string $member): object
-    {
-        $member_id = $this->getUserId($member);
+    public function add(string $list_id, string $member): object {
+        $member_id = $this->getUserId($member, $this->credentials);
 
         $path = "lists/{$list_id}/members";
         $data = [
@@ -58,9 +58,8 @@ class Members extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function remove(string $list_id, string $member): object
-    {
-        $member_id = $this->getUserId($member);
+    public function remove(string $list_id, string $member): object {
+        $member_id = $this->getUserId($member, $this->credentials);
 
         $path = "lists/{$list_id}/members/{$member_id}";
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace Coderjerk\Tests;
+namespace Procorbin\Tests;
 
-use Coderjerk\BirdElephant\User;
-use Coderjerk\BirdElephant\Users\Lists;
+use Procorbin\BirdElephant\User;
+use Procorbin\BirdElephant\Users\Lists;
 use GuzzleHttp\Exception\GuzzleException;
 
 class UserTest extends BaseTest

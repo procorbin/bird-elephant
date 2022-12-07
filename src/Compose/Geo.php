@@ -1,16 +1,19 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Compose;
+namespace Procorbin\BirdElephant\Compose;
 
 /**
  *
  */
-class Geo
-{
+class Geo {
+
     public ?string $place_id = null;
 
-    public function placeId($place_id)
-    {
+    /**
+     * @param $place_id
+     * @return $this
+     */
+    public function placeId($place_id): Geo {
         $this->place_id = $place_id;
         return $this;
     }

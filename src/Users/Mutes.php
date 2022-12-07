@@ -1,12 +1,12 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Users;
+namespace Procorbin\BirdElephant\Users;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
-class Mutes extends ApiBase
-{
+class Mutes extends ApiBase {
+
     /**
      * Auth credentials
      *
@@ -21,24 +21,26 @@ class Mutes extends ApiBase
      */
     protected string $username;
 
-    public function __construct($credentials, $username)
-    {
+    /**
+     * @param $credentials
+     * @param $username
+     */
+    public function __construct($credentials, $username) {
         $this->credentials = $credentials;
         $this->username = $username;
     }
 
     /**
-     * Lookup muteed users for an
+     * Lookup muted users for an
      * authenticated user account.
      *
      * @param array $params
      * @return object
      * @throws GuzzleException
      */
-    public function lookup(array $params): object
-    {
+    public function lookup(array $params): object {
         $id = $this->getUserId($this->username, $this->credentials);
-        $path = "users/{$id}/muting";
+        $path = 'users/'.$id.'/muting';
 
         return $this->get($this->credentials, $path, $params, null, false, true);
     }
@@ -50,10 +52,9 @@ class Mutes extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function mute(string $target_username): object
-    {
+    public function mute(string $target_username): object {
         $id = $this->getUserId($this->username, $this->credentials);
-        $path = "users/{$id}/muting";
+        $path = 'users/'.$id.'/muting';
         $target_user_id = $this->getUserId($target_username, $this->credentials);
         $data = [
             'target_user_id' => $target_user_id
@@ -68,11 +69,10 @@ class Mutes extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function unmute(string $target_username): object
-    {
+    public function unmute(string $target_username): object {
         $id = $this->getUserId($this->username, $this->credentials);
         $target_user_id = $this->getUserId($target_username, $this->credentials);
-        $path = "users/{$id}/muting/{$target_user_id}";
+        $path = 'users/'.$id.'/muting/'.$target_user_id;
 
         return $this->delete($this->credentials, $path, null, null, false, true);
     }

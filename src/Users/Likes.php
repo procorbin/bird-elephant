@@ -1,12 +1,12 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Users;
+namespace Procorbin\BirdElephant\Users;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
-class Likes extends ApiBase
-{
+class Likes extends ApiBase {
+
     /**
      * Auth credentials
      *
@@ -21,8 +21,11 @@ class Likes extends ApiBase
      */
     protected string $username;
 
-    public function __construct($credentials, $username)
-    {
+    /**
+     * @param $credentials
+     * @param $username
+     */
+    public function __construct($credentials, $username) {
         $this->credentials = $credentials;
         $this->username = $username;
     }
@@ -32,9 +35,8 @@ class Likes extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function lookup(array $params): object
-    {
-        $id = $this->getUserId($this->username);
+    public function lookup(array $params): object {
+        $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/liked_tweets";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -45,9 +47,8 @@ class Likes extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function like(string $target_tweet_id): object
-    {
-        $id = $this->getUserId($this->username);
+    public function like(string $target_tweet_id): object {
+        $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/likes";
         $data = [
             'tweet_id' => $target_tweet_id
@@ -60,9 +61,8 @@ class Likes extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function unlike(string $target_tweet_id): object
-    {
-        $id = $this->getUserId($this->username);
+    public function unlike(string $target_tweet_id): object {
+        $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/likes/{$target_tweet_id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);

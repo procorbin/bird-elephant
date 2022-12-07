@@ -1,8 +1,8 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Compliance;
+namespace Procorbin\BirdElephant\Compliance;
 
-use Coderjerk\BirdElephant\Request;
+use Procorbin\BirdElephant\Request;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**

@@ -1,22 +1,24 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Tweets;
+namespace Procorbin\BirdElephant\Tweets;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Returns Tweets from the last seven days
  * that match a search query.
  */
-class Search extends ApiBase
-{
+class Search extends ApiBase {
+
     protected array $credentials;
 
     protected string $endpoint = 'tweets/search/';
 
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
     }
 
@@ -27,8 +29,7 @@ class Search extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function recent($params): object
-    {
+    public function recent($params): object {
         return $this->find('recent', $params);
     }
 
@@ -40,8 +41,7 @@ class Search extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function all($params): object
-    {
+    public function all($params): object {
         return $this->find('all', $params);
     }
 
@@ -51,8 +51,7 @@ class Search extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    protected function find(string $path, array $params): object
-    {
+    protected function find(string $path, array $params): object {
         $path = $this->endpoint . $path;
         return $this->get($this->credentials, $path, $params, null, false, false);
     }

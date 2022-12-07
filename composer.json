@@ -11,22 +11,22 @@
     ],
     "require": {
         "guzzlehttp/guzzle": "^6.0",
-        "guzzlehttp/oauth-subscriber": "^0.6.0"
+        "guzzlehttp/oauth-subscriber": "^0.6.0",
+        "league/oauth2-client": "^2.6"
     },
     "autoload": {
         "psr-4": {
-            "Coderjerk\\BirdElephant\\": "src/"
+            "Procorbin\\BirdElephant\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Coderjerk\\Tests\\": "tests/"
+            "Procorbin\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require-dev": {
-        "smolblog/oauth2-twitter": "^1.0",
         "vlucas/phpdotenv": "^5.2",
         "league/oauth1-client": "^1.10",
         "symfony/var-dumper": "^5.1",

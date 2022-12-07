@@ -1,12 +1,12 @@
 <?php
 
-namespace Coderjerk\BirdElephant\Users;
+namespace Procorbin\BirdElephant\Users;
 
-use Coderjerk\BirdElephant\ApiBase;
+use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
-class Blocks extends ApiBase
-{
+class Blocks extends ApiBase {
+
     /**
      * Auth credentials
      *
@@ -21,8 +21,11 @@ class Blocks extends ApiBase
      */
     protected string $username;
 
-    public function __construct($credentials, $username)
-    {
+    /**
+     * @param $credentials
+     * @param $username
+     */
+    public function __construct($credentials, $username) {
         $this->credentials = $credentials;
         $this->username = $username;
     }
@@ -35,8 +38,7 @@ class Blocks extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function lookup(array $params): object
-    {
+    public function lookup(array $params): object {
         $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/blocking";
 
@@ -50,8 +52,7 @@ class Blocks extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function block(string $target_username): object
-    {
+    public function block(string $target_username): object {
         $id = $this->getUserId($this->username, $this->credentials);
         $path = "users/{$id}/blocking";
         $target_user_id = $this->getUserId($target_username, $this->credentials);
@@ -68,10 +69,9 @@ class Blocks extends ApiBase
      * @return object
      * @throws GuzzleException
      */
-    public function unblock(string $target_username): object
-    {
-        $id = $this->getUserId($this->username);
-        $target_user_id = $this->getUserId($target_username);
+    public function unblock(string $target_username): object {
+        $id = $this->getUserId($this->username, $this->credentials);
+        $target_user_id = $this->getUserId($target_username, $this->credentials);
         $path = "users/{$id}/blocking/{$target_user_id}";
         return $this->delete($this->credentials, $path, null, null, false, true);
     }
