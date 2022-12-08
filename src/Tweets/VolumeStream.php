@@ -12,9 +12,9 @@ class VolumeStream {
      *
      * @var string
      */
-    public string $uri = 'tweets/sample/stream';
+    public $uri = 'tweets/sample/stream';
 
-    private array $credentials;
+    private $credentials;
 
     /**
      * @param $credentials

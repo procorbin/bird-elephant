@@ -18,25 +18,26 @@ class Bookmarks extends ApiBase {
      *
      * @var array
      */
-    protected array $credentials;
+    protected $credentials;
 
     /**
      * A Twitter handle
      *
      * @var string
      */
-    protected string $username;
+    protected $username;
 
     /**
      * The endpoint uri
      *
      * @var string
      */
-    protected string $uri;
+    protected $uri;
 
     /**
      * @param $credentials
      * @param $username
+     * @throws GuzzleException
      */
     public function __construct($credentials, $username) {
         $this->credentials = $credentials;

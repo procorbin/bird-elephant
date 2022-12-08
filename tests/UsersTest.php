@@ -6,25 +6,26 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class UsersTest extends BaseTest
 {
-    protected array $credentials;
-    protected string $username;
-    protected Users $users;
+    protected $credentials;
+    protected $username;
+    protected $users;
 
-    protected function setUp(): void
-    {
+    /**
+     * @return void
+     */
+    protected function setUp(): void {
         parent::setUp();
 
         $this->credentials = $this->setUpCredentials();
-        $this->username = 'shibablastar';
-        $this->users = new Users($this->credentials, $this->username);
+        $this->username = 'procorbin';
+        $this->users = new Users($this->credentials);
     }
 
     /**
      * @throws GuzzleException
      */
-    public function testLookup()
-    {
-        $users = $this->users->lookup(['shibablastar', 'dril', 'spanish__eddie']);
+    public function testLookup() {
+        $users = $this->users->lookup([$this->username, 'dril', 'spanish__eddie']);
         self::assertIsArray($users->data);
     }
 }

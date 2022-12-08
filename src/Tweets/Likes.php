@@ -2,6 +2,7 @@
 
 namespace Procorbin\BirdElephant\Tweets;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Procorbin\BirdElephant\ApiBase;
 
 /**
@@ -9,7 +10,7 @@ use Procorbin\BirdElephant\ApiBase;
  */
 class Likes extends ApiBase
 {
-    protected array $credentials;
+    protected $credentials;
 
     public function __construct($credentials)
     {
@@ -23,7 +24,7 @@ class Likes extends ApiBase
      * @param string $tweet_id - the tweet id
      * @param array $params
      * @return object
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function likingUsers(string $tweet_id, array $params): object
     {

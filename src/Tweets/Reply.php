@@ -10,7 +10,7 @@ use GuzzleHttp\Exception\GuzzleException;
  */
 class Reply extends ApiBase {
 
-    protected array $credentials;
+    protected $credentials;
 
     /**
      * @param $credentials

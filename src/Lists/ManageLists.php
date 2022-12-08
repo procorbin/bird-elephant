@@ -7,7 +7,7 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class ManageLists extends ApiBase {
 
-    protected array $credentials;
+    protected $credentials;
 
     /**
      * @param array $credentials

@@ -18,7 +18,7 @@ class BirdElephant {
      *
      * @var array
      */
-    protected array $credentials;
+    protected $credentials;
 
     /**
      * @param $credentials

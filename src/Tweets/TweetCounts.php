@@ -13,9 +13,9 @@ use GuzzleHttp\Exception\GuzzleException;
  */
 class TweetCounts extends ApiBase {
 
-    protected array $credentials;
+    protected $credentials;
 
-    protected string $endpoint = 'tweets/counts/';
+    protected $endpoint = 'tweets/counts/';
 
     /**
      * @param $credentials

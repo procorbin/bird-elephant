@@ -12,14 +12,14 @@ class Lists extends ApiBase {
      *
      * @var array
      */
-    protected array $credentials;
+    protected $credentials;
 
     /**
      * A Twitter handle
      *
      * @var string
      */
-    protected string $username;
+    protected $username;
 
     /**
      * @param $credentials

@@ -17,17 +17,17 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class User
 {
-    protected array $credentials;
-    private string $username;
-    private UserLookup $userLookup;
-    private Follows $follows;
-    private Blocks $blocks;
-    private Mutes $mutes;
-    private Likes $likes;
-    private Retweets $retweets;
-    private SpacesLookup $spaces;
-    private Timeline $timeline;
-    private Bookmarks $bookmarks;
+    protected $credentials;
+    private $username;
+    private $userLookup;
+    private $follows;
+    private $blocks;
+    private $mutes;
+    private $likes;
+    private $retweets;
+    private $spaces;
+    private $timeline;
+    private $bookmarks;
 
     public function __construct($credentials, $username)
     {
@@ -61,6 +61,7 @@ class User
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function followers(array $params = []): object
     {
@@ -72,6 +73,7 @@ class User
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function following(array $params = []): object
     {
@@ -109,7 +111,7 @@ class User
      * @return object
      * @throws GuzzleException
      */
-    public function blocks($params = []): object
+    public function blocks(array $params = []): object
     {
         return $this->blocks->lookup($params);
     }
@@ -117,7 +119,7 @@ class User
     /**
      * Blocks a given user
      *
-     * @param string $target_username the user name to block
+     * @param string $target_username the username to block
      * @return object
      * @throws GuzzleException
      */
@@ -261,6 +263,7 @@ class User
      *
      * @param array $params
      * @return object
+     * @throws GuzzleException
      */
     public function tweets(array $params = []): object
     {

@@ -18,12 +18,12 @@ class Timeline extends ApiBase {
      *
      * @var string
      */
-    public string $uri = 'users';
+    public $uri = 'users';
 
     /**
      * @var array
      */
-    protected array $credentials;
+    protected $credentials;
 
     /**
      * @param $credentials

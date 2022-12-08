@@ -8,29 +8,33 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class UserTest extends BaseTest
 {
-    protected array $credentials;
-    protected string $username;
-    protected User $user;
+    protected $credentials;
+    protected $username;
+    protected $user;
 
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->credentials = $this->setUpCredentials();
-        $this->username = 'coderjerk';
+        $this->username = 'procorbin';
         $this->user = new User($this->credentials, $this->username);
     }
 
 
-    public function testFollowing()
-    {
+    /**
+     * @throws GuzzleException
+     */
+    public function testFollowing() {
         $case = $this->user->following();
         $this->assertIsArray($case->data);
     }
 
 
-    public function testTweets()
-    {
+    /**
+     * @throws GuzzleException
+     */
+    public function testTweets() {
         $case = $this->user->tweets();
         $this->assertIsArray($case->data);
     }
@@ -96,8 +100,10 @@ class UserTest extends BaseTest
         $this->assertIsArray($case->data);
     }
 
-    public function testFollowers()
-    {
+    /**
+     * @throws GuzzleException
+     */
+    public function testFollowers() {
         $case = $this->user->followers();
         $this->assertIsArray($case->data);
     }

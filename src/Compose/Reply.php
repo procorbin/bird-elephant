@@ -4,8 +4,8 @@ namespace Procorbin\BirdElephant\Compose;
 
 class Reply {
 
-    public ?array $exclude_reply_user_ids = [];
-    public string $in_reply_to_tweet_id;
+    public $exclude_reply_user_ids = [];
+    public $in_reply_to_tweet_id;
 
     /**
      * @param $exclude_reply_user_ids

@@ -64,6 +64,7 @@ class ApiBase {
      * @param $username
      * @param $credentials
      * @return string
+     * @throws GuzzleException
      */
     protected function getUserId($username, $credentials): string {
         $user = new UserLookup($credentials);

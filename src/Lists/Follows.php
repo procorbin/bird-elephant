@@ -7,9 +7,9 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class Follows extends ApiBase {
 
-    protected array $credentials;
+    protected $credentials;
 
-    protected string $path;
+    protected $path;
 
     /**
      * @param $credentials

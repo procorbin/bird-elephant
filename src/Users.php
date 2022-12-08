@@ -7,8 +7,8 @@ use GuzzleHttp\Exception\GuzzleException;
 
 class Users {
 
-    protected array $credentials;
-    private UserLookup $userLookup;
+    protected $credentials;
+    private $userLookup;
 
     /**
      * @param $credentials

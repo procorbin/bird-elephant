@@ -16,14 +16,14 @@ class ManageTweets extends ApiBase {
      *
      * @var array
      */
-    protected array $credentials;
+    protected $credentials;
 
     /**
      * Base endpoint
      *
      * @var string
      */
-    protected string $endpoint = 'tweets';
+    protected $endpoint = 'tweets';
 
     /**
      * @param $credentials

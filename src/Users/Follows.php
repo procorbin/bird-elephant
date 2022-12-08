@@ -16,14 +16,14 @@ class Follows extends ApiBase {
      *
      * @var string
      */
-    public string $uri = 'users';
+    public $uri = 'users';
 
     /**
      * Default query parameters
      *
      * @var array
      */
-    public array $default_params = [
+    public $default_params = [
         'max_results' => 10,
     ];
 
@@ -32,14 +32,14 @@ class Follows extends ApiBase {
      *
      * @var array
      */
-    protected array $credentials;
+    protected $credentials;
 
     /**
      * A Twitter handle
      *
      * @var string
      */
-    protected string $username;
+    protected $username;
 
     /**
      * @param $credentials

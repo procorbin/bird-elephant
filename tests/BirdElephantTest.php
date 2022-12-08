@@ -12,7 +12,7 @@ use Procorbin\BirdElephant\Users;
 
 class BirdElephantTest extends BaseTest
 {
-    protected array $credentials;
+    protected $credentials;
 
     protected function setUp(): void
     {

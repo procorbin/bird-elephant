@@ -18,10 +18,17 @@ class Tweets
      *
      * @var array
      */
-    protected array $credentials;
+    protected $credentials;
 
-    public function __construct(array $credentials)
-    {
+    protected $lookup;
+    protected $likes;
+    protected $retweets;
+    protected $manageTweets;
+
+    /**
+     * @param array $credentials
+     */
+    public function __construct(array $credentials) {
         $this->credentials = $credentials;
         $this->lookup = new TweetLookup($this->credentials);
         $this->likes = new Likes($this->credentials);
@@ -37,8 +44,7 @@ class Tweets
      * @return object
      * @throws GuzzleException
      */
-    public function get(string $id, array $params = []): object
-    {
+    public function get(string $id, array $params = []): object {
         return $this->lookup->getTweet($id, $params);
     }
 
@@ -50,8 +56,7 @@ class Tweets
      * @return object
      * @throws GuzzleException
      */
-    public function lookup(array $ids, array $params = []): object
-    {
+    public function lookup(array $ids, array $params = []): object {
         return $this->lookup->getTweets($ids, $params);
     }
 
@@ -60,8 +65,7 @@ class Tweets
      *
      * @return TweetCounts
      */
-    public function count(): TweetCounts
-    {
+    public function count(): TweetCounts {
         return new TweetCounts($this->credentials);
     }
 
@@ -70,8 +74,7 @@ class Tweets
      *
      * @return Search
      */
-    public function search(): Search
-    {
+    public function search(): Search {
         return new Search($this->credentials);
     }
 
@@ -81,8 +84,7 @@ class Tweets
      *
      * @return Reply
      */
-    public function reply(): Reply
-    {
+    public function reply(): Reply {
         return new Reply($this->credentials);
     }
 
@@ -94,8 +96,7 @@ class Tweets
      * @return object
      * @throws GuzzleException
      */
-    public function likers(string $id, array $params = []): object
-    {
+    public function likers(string $id, array $params = []): object {
         return $this->likes->likingUsers($id, $params);
     }
 
@@ -104,11 +105,11 @@ class Tweets
      * Get users who've retweeted a given tweet
      *
      * @param string $id - tweet id
+     * @param array $params
      * @return object
      * @throws GuzzleException
      */
-    public function retweeters(string $id, array $params = []): object
-    {
+    public function retweeters(string $id, array $params = []): object {
         return $this->retweets->retweetedBy($id, $params);
     }
 
@@ -118,9 +119,9 @@ class Tweets
      *
      * @param object $tweet
      * @return object
+     * @throws GuzzleException
      */
-    public function tweet(object $tweet): object
-    {
+    public function tweet(object $tweet): object {
         return $this->manageTweets->send($tweet);
     }
 
@@ -129,8 +130,7 @@ class Tweets
      * @return object
      * @throws GuzzleException
      */
-    public function delete(string $tweet_id): object
-    {
+    public function delete(string $tweet_id): object {
         return $this->manageTweets->unsend($tweet_id);
     }
 
@@ -139,8 +139,7 @@ class Tweets
      * @return object
      * @throws GuzzleException
      */
-    public function upload($file): object
-    {
+    public function upload($file): object {
         return $this->manageTweets->mediaUpload($file);
     }
 }

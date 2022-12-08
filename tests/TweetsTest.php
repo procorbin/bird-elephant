@@ -9,8 +9,8 @@ use PHPUnit\Framework\TestCase;
 
 class TweetsTest extends BaseTest
 {
-    protected array $credentials;
-    protected Tweets $tweets;
+    protected $credentials;
+    protected $tweets;
 
     protected function setUp(): void
     {

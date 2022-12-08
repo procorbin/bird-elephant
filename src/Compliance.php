@@ -5,13 +5,14 @@ namespace Procorbin\BirdElephant;
 use Procorbin\BirdElephant\Compliance\BatchCompliance;
 use GuzzleHttp\Exception\GuzzleException;
 
-class Compliance
-{
+class Compliance {
 
-    protected array $credentials;
+    protected $credentials;
 
-    public function __construct($credentials)
-    {
+    /**
+     * @param $credentials
+     */
+    public function __construct($credentials) {
         $this->credentials = $credentials;
     }
 

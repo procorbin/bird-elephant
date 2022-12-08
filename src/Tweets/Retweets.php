@@ -10,7 +10,7 @@ use Procorbin\BirdElephant\ApiBase;
  */
 class Retweets extends ApiBase {
 
-    protected array $credentials;
+    protected $credentials;
 
     /**
      * @param $credentials

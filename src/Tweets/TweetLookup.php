@@ -16,14 +16,14 @@ class TweetLookup extends ApiBase {
      *
      * @var string
      */
-    public string $endpoint_base = 'tweets';
+    public $endpoint_base = 'tweets';
 
     /**
      * Tokens and secrets
      *
      * @var array
      */
-    protected array $credentials;
+    protected $credentials;
 
     /**
      * @param array $credentials

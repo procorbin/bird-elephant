@@ -6,15 +6,15 @@ use Exception;
 
 class Tweet {
 
-    public ?string $direct_message_deep_link = null;
-    public bool $for_super_followers_only = false;
-    public ?string $quote_tweet_id = null;
-    public ?string $reply_settings = null;
-    public ?string $text = null;
-    public ?object $media = null;
-    public ?object $poll = null;
-    public ?object $reply = null;
-    public ?object $geo = null;
+    public $direct_message_deep_link = null;
+    public $for_super_followers_only = false;
+    public $quote_tweet_id = null;
+    public $reply_settings = null;
+    public $text = null;
+    public $media = null;
+    public $poll = null;
+    public $reply = null;
+    public $geo = null;
 
     /**
      * @param $text
@@ -89,12 +89,20 @@ class Tweet {
         return $this;
     }
 
-    public function forSuperFollowersOnly($for_super_followers_only = true): Tweet
+    /**
+     * @param bool $for_super_followers_only
+     * @return $this
+     */
+    public function forSuperFollowersOnly(bool $for_super_followers_only = true): Tweet
     {
         $this->for_super_followers_only = $for_super_followers_only;
         return $this;
     }
 
+    /**
+     * @param $direct_message_deep_link
+     * @return $this
+     */
     public function directMessageDeepLink($direct_message_deep_link): Tweet
     {
         $this->direct_message_deep_link = $direct_message_deep_link;

@@ -11,9 +11,9 @@ use GuzzleHttp\Exception\GuzzleException;
  */
 class Search extends ApiBase {
 
-    protected array $credentials;
+    protected $credentials;
 
-    protected string $endpoint = 'tweets/search/';
+    protected $endpoint = 'tweets/search/';
 
     /**
      * @param $credentials

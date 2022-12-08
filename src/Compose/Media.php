@@ -4,8 +4,8 @@ namespace Procorbin\BirdElephant\Compose;
 
 class Media {
 
-    public ?array $media_ids = null;
-    public ?array $tagged_user_ids = [];
+    public $media_ids = null;
+    public $tagged_user_ids = [];
 
     /**
      * @param $media_ids

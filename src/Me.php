@@ -12,12 +12,12 @@ class Me {
      *
      * @var array
      */
-    protected array $credentials;
+    protected $credentials;
 
     /**
      * @var UserLookup
      */
-    protected UserLookup $userLookup;
+    protected $userLookup;
 
     public function __construct($credentials) {
         $this->credentials = $credentials;

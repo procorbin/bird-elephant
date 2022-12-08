@@ -7,7 +7,7 @@ namespace Procorbin\BirdElephant\Compose;
  */
 class Geo {
 
-    public ?string $place_id = null;
+    public $place_id = null;
 
     /**
      * @param $place_id
