@@ -27,7 +27,7 @@ class Tweets extends ApiBase {
      * @throws GuzzleException
      */
     public function lookup(string $list_id, array $params = []): object {
-        $path = "lists/{$list_id}/tweets";
+        $path = 'lists/'.$list_id.'/tweets';
         return $this->get($this->credentials, $path, $params, null, false, false);
     }
 }

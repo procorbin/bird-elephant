@@ -41,7 +41,7 @@ class TweetLookup extends ApiBase {
      * @throws GuzzleException
      */
     public function getTweet(string $id, array $params): object {
-        $path = $this->endpoint_base . '/' . $id;
+        $path = $this->endpoint_base.'/'.$id;
 
         return $this->get($this->credentials, $path, $params);
     }

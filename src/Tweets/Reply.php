@@ -48,7 +48,7 @@ class Reply extends ApiBase {
      * @throws GuzzleException
      */
     protected function manageReplies(string $id, array $data): object {
-        $endpoint = "tweets/{$id}/hidden";
+        $endpoint = 'tweets/'.$id.'/hidden';
         return $this->put($this->credentials, $endpoint, null, $data, false, true);
     }
 }

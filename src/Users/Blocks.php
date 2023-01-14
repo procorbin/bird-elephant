@@ -38,14 +38,12 @@ class Blocks extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function lookup(array $params): object {
+    public function lookup(array $params): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
-        $path = "users/{$id}/blocking";
+        $path = 'users/'.$id.'/blocking';
 
         return $this->get($this->credentials, $path, $params, null, false, true);
     }
@@ -57,18 +55,16 @@ class Blocks extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function block(string $target_username): object {
+    public function block(string $target_username): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
+        $path = 'users/'.$id.'/blocking';
 
-        $path = "users/{$id}/blocking";
         $target_user_id = $this->getUserId($target_username, $this->credentials);
-
-        if ($target_user_id == null) {
-            return $target_user_id;
+        if ($target_user_id === null) {
+            return null;
         }
 
         $data = [
@@ -84,20 +80,18 @@ class Blocks extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function unblock(string $target_username): object {
+    public function unblock(string $target_username): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
 
         $target_user_id = $this->getUserId($target_username, $this->credentials);
-
-        if ($target_user_id == null) {
-            return $target_user_id;
+        if ($target_user_id === null) {
+            return null;
         }
+        $path = 'users/'.$id.'/blocking/'.$target_user_id;
 
-        $path = "users/{$id}/blocking/{$target_user_id}";
         return $this->delete($this->credentials, $path, null, null, false, true);
     }
 }

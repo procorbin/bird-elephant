@@ -1,8 +1,7 @@
-<img src="https://birdelephant.com/logo-bird-elephant.svg" width="300px" alt=
-"Bird Elephant">
+<img src="https://birdelephant.com/logo-bird-elephant.svg" width="300px" alt="Bird Elephant">
 
 
-[![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api) [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.4-8892BF.svg)](https://php.net/) [![twitter](https://img.shields.io/twitter/follow/coderjerk?style=social)](https://twitter.com/coderjerk)
+[![v2](https://img.shields.io/endpoint?url=https%3A%2F%2Ftwbadges.glitch.me%2Fbadges%2Fv2)](https://developer.twitter.com/en/docs/twitter-api) [![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%207.3-8892BF.svg)](https://php.net/)
 
 
 ### Connect to Twitter API v2 endpoints in PHP.
@@ -82,7 +81,7 @@ The package provides a number of different ways of interacting with the Twitter 
 
 
 ```php
-use Coderjerk\BirdElephant\BirdElephant;
+use Procorbin\BirdElephant\BirdElephant;
 
 //your credentials, should be passed in via $_ENV or similar, don't hardcode.
 $credentials = array(
@@ -109,7 +108,7 @@ $following = $twitter->user('coderjerk')->following([
 ]);
 
 //tweet something
-$tweet = (new \Coderjerk\BirdElephant\Compose\Tweet)->text(".@coderjerk is so cool");
+$tweet = (new \Procorbin\BirdElephant\Compose\Tweet)->text(".@coderjerk is so cool");
 
 $twitter->tweets()->tweet($tweet);
 
@@ -129,16 +128,8 @@ This is an unofficial tool written by [me](https://github.com/danieldevine) in m
 
 This package does not support Twitter API v1.1 (with the exception of media uploads).
 
-## Sponsored By
-
-[![Hype Machine](/img/sponsors/hype_machine.png "Hype Machine")](https://hypem.com/)
-
-Thanks to [Hype Machine](https://hypem.com/) for sponsoring the project.
-
 ## Sponsor
 If you or your company find this library useful show your love by throwing me a few euros and I'll give you a shout out on here and on the [project website](https://birdelephant.com/)
-
-[Sponsor Development](https://github.com/sponsors/danieldevine)
 
 ## Contributing
 
@@ -153,5 +144,3 @@ To run tests
 `./vendor/bin/phpunit`
 
 Issues, pull requests and other contributions most welcome. Please use the issue template provided.
-
-You can [look at the project board for upcoming features](https://github.com/danieldevine/bird-elephant/projects/1) if you want to pitch in :)

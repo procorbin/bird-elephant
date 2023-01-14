@@ -56,12 +56,10 @@ class ManageLists extends ApiBase {
             'name' => $name,
             'private' => $private
         ];
-
         if ($description) {
             $data['description'] = $description;
         }
-
-        $path = "lists/{$id}";
+        $path = 'lists/'.$id;
 
         return $this->put($this->credentials, $path, null, $data, false, true);
     }
@@ -74,7 +72,7 @@ class ManageLists extends ApiBase {
      * @throws GuzzleException
      */
     public function deleteList(string $id): object {
-        $path = "lists/{$id}";
+        $path = 'lists/'.$id;
 
         return $this->delete($this->credentials, $path, null, null, false, true);
     }

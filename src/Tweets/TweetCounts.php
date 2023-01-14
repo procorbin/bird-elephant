@@ -55,7 +55,7 @@ class TweetCounts extends ApiBase {
      * @throws GuzzleException
      */
     protected function getCount(string $path, array $params): object {
-        $path = $this->endpoint . $path;
+        $path = $this->endpoint.$path;
         return $this->get($this->credentials, $path, $params, null, false, false);
     }
 }

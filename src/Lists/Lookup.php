@@ -38,7 +38,7 @@ class Lookup extends ApiBase {
      * @throws GuzzleException
      */
     public function getList(string $list_id, array $params = []): object {
-        $path = $this->endpoint_base . '/' . $list_id;
+        $path = $this->endpoint_base.'/'.$list_id;
         return $this->get($this->credentials, $path, $params);
     }
 }

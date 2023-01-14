@@ -52,7 +52,7 @@ class ManageTweets extends ApiBase {
      * @throws GuzzleException
      */
     public function unsend(string $tweet_id): object {
-        $path = $this->endpoint . '/' . $tweet_id;
+        $path = $this->endpoint.'/'.$tweet_id;
         return $this->delete($this->credentials, $path, null, null, false, true);
     }
 

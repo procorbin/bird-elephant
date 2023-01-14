@@ -32,7 +32,7 @@ class UserLookup extends ApiBase {
      * @throws GuzzleException
      */
     public function getSingleUserById(string $id, array $params): object {
-        $path = $this->uri . '/' . $id;
+        $path = $this->uri.'/'.$id;
         return $this->get($this->credentials, $path, $params);
     }
 
@@ -66,7 +66,7 @@ class UserLookup extends ApiBase {
      * @throws GuzzleException
      */
     public function getSingleUserByUsername(string $username, array $params): object {
-        $path = $this->uri . '/by/username/' . $username;
+        $path = $this->uri.'/by/username/'.$username;
 
         $request = new Request($this->credentials);
         return $request->authorisedRequest('GET', $path, $params);
@@ -81,7 +81,6 @@ class UserLookup extends ApiBase {
      */
     public function getUserIdFromUsername(string $username): ?string {
         $user = $this->getSingleUserByUsername($username, []);
-
         if (!isset($user->data)) {
             return null;
         }
@@ -98,7 +97,7 @@ class UserLookup extends ApiBase {
      * @throws GuzzleException
      */
     public function getMultipleUsersByUsername(array $usernames, array $params): object {
-        $path = $this->uri . '/by';
+        $path = $this->uri.'/by';
         $params['usernames'] = join(',', $usernames);
 
         $request = new Request($this->credentials);
@@ -123,7 +122,7 @@ class UserLookup extends ApiBase {
     }
 
     /**
-     * Looks up Twitter users by Id
+     * Looks up Twitter users by Ids
      *
      * @param array $ids
      * @param array $params
@@ -146,7 +145,7 @@ class UserLookup extends ApiBase {
      * @throws GuzzleException
      */
     public function getMe(array $params): object {
-        $path = $this->uri . '/me/';
+        $path = $this->uri.'/me/';
 
         return $this->get($this->credentials, $path, $params, null, false, true);
     }

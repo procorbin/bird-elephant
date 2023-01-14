@@ -3,7 +3,6 @@
 namespace Procorbin\BirdElephant;
 
 use GuzzleHttp\Client;
-
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\ServerException;
@@ -99,7 +98,7 @@ class Request {
             }
 
             if (!isset($args['data'])) {
-                $args['data'] === null;
+                $args['data'] = null;
             }
 
             $request  = $client->request($args['http_method'], $path, [

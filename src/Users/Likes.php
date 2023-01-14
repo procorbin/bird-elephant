@@ -35,14 +35,12 @@ class Likes extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function lookup(array $params): object {
+    public function lookup(array $params): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
-        $path = "users/{$id}/liked_tweets";
+        $path = 'users/'.$id.'/liked_tweets';
 
         return $this->get($this->credentials, $path, $params, null, false, true);
     }
@@ -52,33 +50,30 @@ class Likes extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function like(string $target_tweet_id): object {
+    public function like(string $target_tweet_id): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
-        $path = "users/{$id}/likes";
+        $path = 'users/'.$id.'/likes';
         $data = [
             'tweet_id' => $target_tweet_id
         ];
+
         return $this->post($this->credentials, $path, null, $data, false, true);
     }
 
     /**
      * @param string $target_tweet_id
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
-    public function unlike(string $target_tweet_id): object {
+    public function unlike(string $target_tweet_id): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
-        $path = "users/{$id}/likes/{$target_tweet_id}";
+        $path = 'users/'.$id.'/likes/'.$target_tweet_id;
 
         return $this->delete($this->credentials, $path, null, null, false, true);
     }

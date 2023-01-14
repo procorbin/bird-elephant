@@ -50,7 +50,7 @@ class FilteredStream extends ApiBase {
      */
     public function getRules(): object
     {
-        $uri = $this->uri . '/rules';
+        $uri = $this->uri.'/rules';
         $params = [];
 
         $request = new Request($this->credentials);
@@ -66,7 +66,7 @@ class FilteredStream extends ApiBase {
      * @throws GuzzleException
      */
     public function setRules(string $value, string $tag): object {
-        $uri = $this->uri . '/rules';
+        $uri = $this->uri.'/rules';
 
         $rules =  [
             [
@@ -91,7 +91,7 @@ class FilteredStream extends ApiBase {
      * @throws GuzzleException
      */
     public function deleteRule(string $id): object {
-        $uri = $this->uri . '/rules';
+        $uri = $this->uri.'/rules';
 
         $rules =  [
             'ids' => [

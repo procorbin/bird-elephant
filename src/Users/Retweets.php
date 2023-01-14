@@ -33,36 +33,33 @@ class Retweets extends ApiBase {
 
     /**
      * @param string $target_tweet_id
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
-    public function retweet(string $target_tweet_id): object {
+    public function retweet(string $target_tweet_id): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
         $path = 'users/'.$id.'/retweets';
         $data = [
             'tweet_id' => $target_tweet_id
         ];
+
         return $this->post($this->credentials, $path, null, $data, false, true);
     }
 
 
     /**
      * @param string $target_tweet_id
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
-    public function unretweet(string $target_tweet_id): object {
+    public function unretweet(string $target_tweet_id): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
         $path = 'users/'.$id.'/retweets/'.$target_tweet_id;
 
         return $this->delete($this->credentials, $path, null, null, false, true);

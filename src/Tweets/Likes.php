@@ -28,7 +28,7 @@ class Likes extends ApiBase
      */
     public function likingUsers(string $tweet_id, array $params): object
     {
-        $path = "tweets/{$tweet_id}/liking_users";
+        $path = 'tweets/'.$tweet_id.'/liking_users';
         return $this->get($this->credentials, $path, $params, null, false, false);
     }
 }

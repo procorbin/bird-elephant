@@ -1,15 +1,7 @@
 <?php
-
 namespace Procorbin\BirdElephant;
 
 use GuzzleHttp\Exception\GuzzleException;
-use Procorbin\BirdElephant\Compliance;
-use Procorbin\BirdElephant\Lists;
-use Procorbin\BirdElephant\Me;
-use Procorbin\BirdElephant\Spaces;
-use Procorbin\BirdElephant\Tweets;
-use Procorbin\BirdElephant\User;
-use Procorbin\BirdElephant\Users;
 
 class BirdElephant {
 

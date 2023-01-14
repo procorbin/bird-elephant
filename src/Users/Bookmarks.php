@@ -2,6 +2,7 @@
 
 namespace Procorbin\BirdElephant\Users;
 
+use Exception;
 use Procorbin\BirdElephant\ApiBase;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -38,17 +39,17 @@ class Bookmarks extends ApiBase {
      * @param $credentials
      * @param $username
      * @throws GuzzleException
+     * @throws Exception
      */
     public function __construct($credentials, $username) {
         $this->credentials = $credentials;
-
         $user_id = $this->getUserId($username, $credentials);
 
-        if ($user_id == null) {
+        if ($user_id === null) {
             throw new Exception('The username of this account is unknown to Twitter');
         }
 
-        $this->uri = 'users/' . $user_id . '/bookmarks';
+        $this->uri = 'users/'.$user_id.'/bookmarks';
     }
 
     /**
@@ -81,7 +82,7 @@ class Bookmarks extends ApiBase {
      * @throws GuzzleException
      */
     public function unbookmark(string $target_tweet_id): object {
-        $path = $this->uri . '/' . $target_tweet_id;
+        $path = $this->uri.'/'.$target_tweet_id;
 
         return $this->delete($this->credentials, $path, null, null, false, true);
     }

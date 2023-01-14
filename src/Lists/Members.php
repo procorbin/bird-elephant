@@ -27,7 +27,7 @@ class Members extends ApiBase {
      * @throws GuzzleException
      */
     public function lookup(string $list_id, array $params = []): object {
-        $path = "lists/{$list_id}/members";
+        $path = 'lists/'.$list_id.'/members';
         return $this->get($this->credentials, $path, $params, null, false, false);
     }
 
@@ -39,14 +39,12 @@ class Members extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function add(string $list_id, string $member): object {
+    public function add(string $list_id, string $member): ?object {
         $member_id = $this->getUserId($member, $this->credentials);
-
-        if ($member_id == null) {
-            return $member_id;
+        if ($member_id === null) {
+            return null;
         }
-
-        $path = "lists/{$list_id}/members";
+        $path = 'lists/'.$list_id.'/members';
         $data = [
             'user_id' => $member_id
         ];
@@ -62,14 +60,12 @@ class Members extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function remove(string $list_id, string $member): object {
+    public function remove(string $list_id, string $member): ?object {
         $member_id = $this->getUserId($member, $this->credentials);
-
-        if ($member_id == null) {
-            return $member_id;
+        if ($member_id === null) {
+            return null;
         }
-
-        $path = "lists/{$list_id}/members/{$member_id}";
+        $path = 'lists/'.$list_id.'/members/'.$member_id;
 
         return $this->delete($this->credentials, $path, null, null, false, true);
     }

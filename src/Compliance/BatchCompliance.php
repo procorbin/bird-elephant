@@ -10,16 +10,15 @@ use GuzzleHttp\Exception\GuzzleException;
  * with the Twitter Developer Agreement and Policy.
  *
  */
-class BatchCompliance
-{
+class BatchCompliance {
+
     /**
      * The endpoint
      *
      * @var string
      */
-    public string $uri = 'compliance/jobs';
-    private array $credentials;
-
+    public $uri = 'compliance/jobs';
+    private $credentials;
 
     public function __construct($credentials)
     {
@@ -35,8 +34,7 @@ class BatchCompliance
      * @return object
      * @throws GuzzleException
      */
-    public function createComplianceJob(string $type, string $name, bool $resumable): object
-    {
+    public function createComplianceJob(string $type, string $name, bool $resumable): object {
         $params = [
             'type' => $type,
             'name' => $name,
@@ -55,11 +53,10 @@ class BatchCompliance
      * @return object
      * @throws GuzzleException
      */
-    public function getComplianceJob(string $id): object
-    {
+    public function getComplianceJob(string $id): object {
         $request = new Request($this->credentials);
 
-        return $request->authorisedRequest('GET', $this->uri . '/' . $id, null, null, false);
+        return $request->authorisedRequest('GET', $this->uri.'/'.$id, null, null, false);
     }
 
     /**
@@ -69,8 +66,7 @@ class BatchCompliance
      * @return object
      * @throws GuzzleException
      */
-    public function getComplianceJobs(string $type): object
-    {
+    public function getComplianceJobs(string $type): object {
         $params = [
             'type' => $type,
         ];

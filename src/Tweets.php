@@ -100,7 +100,6 @@ class Tweets
         return $this->likes->likingUsers($id, $params);
     }
 
-
     /**
      * Get users who've retweeted a given tweet
      *
@@ -112,7 +111,6 @@ class Tweets
     public function retweeters(string $id, array $params = []): object {
         return $this->retweets->retweetedBy($id, $params);
     }
-
 
     /**
      * Send a tweet

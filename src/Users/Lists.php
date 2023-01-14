@@ -35,17 +35,16 @@ class Lists extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function follow(string $target_list_id): object {
+    public function follow(string $target_list_id): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
-        $path = "users/{$id}/followed_lists";
+        $path = 'users/'.$id.'/followed_lists';
         $data = [
             'list_id' => $target_list_id
         ];
+
         return $this->post($this->credentials, $path, null, $data, false, true);
     }
 
@@ -54,14 +53,12 @@ class Lists extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function unfollow(string $target_list_id): object {
+    public function unfollow(string $target_list_id): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
-        $path = "users/{$id}/followed_lists/{$target_list_id}";
+        $path = 'users/'.$id.'/followed_lists/'.$target_list_id;
 
         return $this->delete($this->credentials, $path, null, null, false, true);
     }
@@ -71,17 +68,16 @@ class Lists extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function pin(string $target_list_id): object {
+    public function pin(string $target_list_id): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
-        $path = "users/{$id}/pinned_lists";
+        $path = 'users/'.$id.'/pinned_lists';
         $data = [
             'list_id' => $target_list_id
         ];
+
         return $this->post($this->credentials, $path, null, $data, false, true);
     }
 
@@ -90,14 +86,12 @@ class Lists extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function unpin(string $target_list_id): object {
+    public function unpin(string $target_list_id): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
-        $path = "users/{$id}/pinned_lists/{$target_list_id}";
+        $path = 'users/'.$id.'/pinned_lists/'.$target_list_id;
 
         return $this->delete($this->credentials, $path, null, null, false, true);
     }
@@ -107,14 +101,12 @@ class Lists extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function pinned(array $params = []): object {
+    public function pinned(array $params = []): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
-        $path = "users/{$id}/pinned_lists";
+        $path = 'users/'.$id.'/pinned_lists';
 
         return $this->get($this->credentials, $path, $params, null, false, true);
     }
@@ -124,14 +116,12 @@ class Lists extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function followed(array $params = []): object {
+    public function followed(array $params = []): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
-        $path = "users/{$id}/followed_lists";
+        $path = 'users/'.$id.'/followed_lists';
 
         return $this->get($this->credentials, $path, $params, null, false, true);
     }
@@ -141,14 +131,12 @@ class Lists extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function owned(array $params = []): object {
+    public function owned(array $params = []): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
-        $path = "users/{$id}/owned_lists";
+        $path = 'users/'.$id.'/owned_lists';
 
         return $this->get($this->credentials, $path, $params, null, false, true);
     }
@@ -160,14 +148,12 @@ class Lists extends ApiBase {
      * @return object|null
      * @throws GuzzleException
      */
-    public function memberships(array $params = []): object {
+    public function memberships(array $params = []): ?object {
         $id = $this->getUserId($this->username, $this->credentials);
-
-        if ($id == null) {
-            return $id;
+        if ($id === null) {
+            return null;
         }
-
-        $path = "users/{$id}/list_memberships";
+        $path = 'users/'.$id.'/list_memberships';
 
         return $this->get($this->credentials, $path, $params, null, false, true);
     }

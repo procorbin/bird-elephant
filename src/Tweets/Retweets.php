@@ -29,7 +29,7 @@ class Retweets extends ApiBase {
      * @throws GuzzleException
      */
     public function retweetedBy(string $tweet_id, array $params): object {
-        $path = "tweets/{$tweet_id}/retweeted_by";
+        $path = 'tweets/'.$tweet_id.'/retweeted_by';
         return $this->get($this->credentials, $path, $params, null, false, false);
     }
 }

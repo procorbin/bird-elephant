@@ -2,7 +2,6 @@
 
 namespace Procorbin\BirdElephant;
 
-use Procorbin\BirdElephant\Request;
 use Procorbin\BirdElephant\Users\UserLookup;
 use GuzzleHttp\Exception\GuzzleException;
 
@@ -66,7 +65,7 @@ class ApiBase {
      * @return string|null
      * @throws GuzzleException
      */
-    protected function getUserId($username, $credentials): string {
+    protected function getUserId($username, $credentials): ?string {
         $user = new UserLookup($credentials);
         return $user->getUserIdFromUsername($username);
     }
