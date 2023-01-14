@@ -79,7 +79,7 @@ class UserLookup extends ApiBase {
      * @return string|null
      * @throws GuzzleException
      */
-    public function getUserIdFromUsername(string $username): string {
+    public function getUserIdFromUsername(string $username): ?string {
         $user = $this->getSingleUserByUsername($username, []);
 
         if (!isset($user->data)) {
