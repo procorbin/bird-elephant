@@ -76,11 +76,15 @@ class UserLookup extends ApiBase {
      * Gets a user's id from their username
      *
      * @param string $username
-     * @return string
+     * @return string|null
      * @throws GuzzleException
      */
     public function getUserIdFromUsername(string $username): string {
         $user = $this->getSingleUserByUsername($username, []);
+
+        if (!isset($user->data)) {
+            return null;
+        }
 
         return $user->data->id;
     }

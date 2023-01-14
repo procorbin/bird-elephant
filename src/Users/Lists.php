@@ -32,11 +32,16 @@ class Lists extends ApiBase {
 
     /**
      * @param string $target_list_id
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function follow(string $target_list_id): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = "users/{$id}/followed_lists";
         $data = [
             'list_id' => $target_list_id
@@ -46,11 +51,16 @@ class Lists extends ApiBase {
 
     /**
      * @param string $target_list_id
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function unfollow(string $target_list_id): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = "users/{$id}/followed_lists/{$target_list_id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);
@@ -58,11 +68,16 @@ class Lists extends ApiBase {
 
     /**
      * @param string $target_list_id
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function pin(string $target_list_id): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = "users/{$id}/pinned_lists";
         $data = [
             'list_id' => $target_list_id
@@ -72,11 +87,16 @@ class Lists extends ApiBase {
 
     /**
      * @param string $target_list_id
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function unpin(string $target_list_id): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = "users/{$id}/pinned_lists/{$target_list_id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);
@@ -84,11 +104,16 @@ class Lists extends ApiBase {
 
     /**
      * @param array $params
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function pinned(array $params = []): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = "users/{$id}/pinned_lists";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -96,11 +121,16 @@ class Lists extends ApiBase {
 
     /**
      * @param array $params
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function followed(array $params = []): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = "users/{$id}/followed_lists";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -108,11 +138,16 @@ class Lists extends ApiBase {
 
     /**
      * @param array $params
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function owned(array $params = []): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = "users/{$id}/owned_lists";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -122,11 +157,16 @@ class Lists extends ApiBase {
      * Returns all Lists a specified user is a member of
      *
      * @param array $params
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function memberships(array $params = []): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = "users/{$id}/list_memberships";
 
         return $this->get($this->credentials, $path, $params, null, false, true);

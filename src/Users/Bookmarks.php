@@ -44,6 +44,10 @@ class Bookmarks extends ApiBase {
 
         $user_id = $this->getUserId($username, $credentials);
 
+        if ($user_id == null) {
+            throw new Exception('The username of this account is unknown to Twitter');
+        }
+
         $this->uri = 'users/' . $user_id . '/bookmarks';
     }
 

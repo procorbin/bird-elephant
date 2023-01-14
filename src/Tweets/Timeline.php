@@ -62,11 +62,16 @@ class Timeline extends ApiBase {
      *
      * @param string $user
      * @param array $params
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function getReverseChronological(string $user, array $params): object {
         $id = $this->getUserId($user, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = $this->uri . '/' .  $id . '/timelines/reverse_chronological';
         return $this->get($this->credentials, $path, $params, null, false, true);
     }
@@ -77,11 +82,16 @@ class Timeline extends ApiBase {
      * @param string $user
      * @param string $endpoint
      * @param array $params
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     protected function getTimeline(string $user, string $endpoint, array $params): object {
         $id = $this->getUserId($user, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = $this->uri . '/' .  $id . $endpoint;
         return $this->get($this->credentials, $path, $params);
     }

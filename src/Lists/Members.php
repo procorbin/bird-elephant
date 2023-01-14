@@ -36,11 +36,15 @@ class Members extends ApiBase {
      *
      * @param string $list_id
      * @param string $member
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function add(string $list_id, string $member): object {
         $member_id = $this->getUserId($member, $this->credentials);
+
+        if ($member_id == null) {
+            return $member_id;
+        }
 
         $path = "lists/{$list_id}/members";
         $data = [
@@ -55,11 +59,15 @@ class Members extends ApiBase {
      *
      * @param string $list_id
      * @param string $member
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function remove(string $list_id, string $member): object {
         $member_id = $this->getUserId($member, $this->credentials);
+
+        if ($member_id == null) {
+            return $member_id;
+        }
 
         $path = "lists/{$list_id}/members/{$member_id}";
 

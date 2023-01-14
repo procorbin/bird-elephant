@@ -63,7 +63,7 @@ class ApiBase {
     /**
      * @param $username
      * @param $credentials
-     * @return string
+     * @return string|null
      * @throws GuzzleException
      */
     protected function getUserId($username, $credentials): string {

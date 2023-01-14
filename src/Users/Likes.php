@@ -32,11 +32,16 @@ class Likes extends ApiBase {
 
     /**
      * @param array $params
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function lookup(array $params): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = "users/{$id}/liked_tweets";
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -44,11 +49,16 @@ class Likes extends ApiBase {
 
     /**
      * @param string $target_tweet_id
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function like(string $target_tweet_id): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = "users/{$id}/likes";
         $data = [
             'tweet_id' => $target_tweet_id
@@ -63,6 +73,11 @@ class Likes extends ApiBase {
      */
     public function unlike(string $target_tweet_id): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = "users/{$id}/likes/{$target_tweet_id}";
 
         return $this->delete($this->credentials, $path, null, null, false, true);

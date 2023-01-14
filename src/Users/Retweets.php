@@ -38,6 +38,11 @@ class Retweets extends ApiBase {
      */
     public function retweet(string $target_tweet_id): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = 'users/'.$id.'/retweets';
         $data = [
             'tweet_id' => $target_tweet_id
@@ -53,6 +58,11 @@ class Retweets extends ApiBase {
      */
     public function unretweet(string $target_tweet_id): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = 'users/'.$id.'/retweets/'.$target_tweet_id;
 
         return $this->delete($this->credentials, $path, null, null, false, true);

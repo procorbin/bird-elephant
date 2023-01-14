@@ -77,12 +77,17 @@ class SpacesLookup extends ApiBase {
      *
      * @param string $user_name - the username
      * @param array $params
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function getByUser(string $user_name, array $params = []): object {
         $path = $this->endpoint_base . '/by/creator_ids';
         $id = $this->getUserId($user_name, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $params['user_ids'] = $id;
 
         return $this->get($this->credentials, $path, $params);

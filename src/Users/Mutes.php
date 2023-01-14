@@ -35,11 +35,16 @@ class Mutes extends ApiBase {
      * authenticated user account.
      *
      * @param array $params
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function lookup(array $params): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = 'users/'.$id.'/muting';
 
         return $this->get($this->credentials, $path, $params, null, false, true);
@@ -49,13 +54,23 @@ class Mutes extends ApiBase {
      * mutes a named user
      *
      * @param string $target_username
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function mute(string $target_username): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = 'users/'.$id.'/muting';
         $target_user_id = $this->getUserId($target_username, $this->credentials);
+
+        if ($target_user_id == null) {
+            return $target_user_id;
+        }
+
         $data = [
             'target_user_id' => $target_user_id
         ];
@@ -66,12 +81,22 @@ class Mutes extends ApiBase {
      * Unmutes a named user
      *
      * @param string $target_username
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function unmute(string $target_username): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $target_user_id = $this->getUserId($target_username, $this->credentials);
+
+        if ($target_user_id == null) {
+            return $target_user_id;
+        }
+
         $path = 'users/'.$id.'/muting/'.$target_user_id;
 
         return $this->delete($this->credentials, $path, null, null, false, true);

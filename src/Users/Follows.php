@@ -77,11 +77,16 @@ class Follows extends ApiBase {
      *
      * @param array $params
      * @param string $endpoint
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     protected function getFollows(array $params, string $endpoint): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = $this->uri . '/' .  $id . $endpoint;
         $params = array_merge($this->default_params, $params);
         return $this->get($this->credentials, $path, $params, null, false, false);
@@ -91,13 +96,23 @@ class Follows extends ApiBase {
      * Follows a named user
      *
      * @param string $target_username
-     * @return object
+     * @return object|null
      * @throws GuzzleException
      */
     public function follow(string $target_username): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $path = 'users/'.$id.'/following';
         $target_user_id = $this->getUserId($target_username, $this->credentials);
+
+        if ($$target_user_id == null) {
+            return $$target_user_id;
+        }
+
         $data = [
             'target_user_id' => $target_user_id
         ];
@@ -116,8 +131,18 @@ class Follows extends ApiBase {
      */
     public function unfollow(string $target_username): object {
         $id = $this->getUserId($this->username, $this->credentials);
+
+        if ($id == null) {
+            return $id;
+        }
+
         $target_user_id = $this->getUserId($target_username, $this->credentials);
-        $path = $this->uri.'/'.$id .'/following/'.$target_user_id;
+
+        if ($$target_user_id == null) {
+            return $$target_user_id;
+        }
+
+        $path = $this->uri.'/'.$id.'/following/'.$target_user_id;
         return $this->delete($this->credentials, $path, null, null, false, true);
     }
 }
